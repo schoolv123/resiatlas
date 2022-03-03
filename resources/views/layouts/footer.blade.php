@@ -1,5 +1,5 @@
  {{-- scroll to top --}}
- <div class="scrollto-top"><i class="fa fa-angle-up" aria-hidden="true"></i></div>
+ {{-- <div class="scrollto-top"><i class="fa fa-angle-up" aria-hidden="true"></i></div> --}}
  {{-- jQuery --}}
  <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
  {{-- Bootstrap 4 --}}

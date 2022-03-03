@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActionController;
 use App\Http\Controllers\RouteController;
 use Illuminate\Support\Facades\Route;
 
@@ -21,6 +22,7 @@ Route::get('/dashboard', [RouteController::class, 'Dashboard']);
 //static page part
 Route::prefix('staticpage')->group(function () {
     Route::get('/{pagename}', [RouteController::class, 'Staticpage']);
+    Route::post('/{pagename}', [ActionController::class, 'StaticPageData']);
 });
 
 //faq part

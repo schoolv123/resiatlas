@@ -35,7 +35,8 @@
                   @foreach ($menus as $item)
                       @if ($item->has_submenu)
                           <li class="nav-item">
-                              <a href="#" class="nav-link">
+                              <a href="#"
+                                  class="nav-link {{ strpos(request()->path(), $item->route) == 1 ? 'active' : '' }}">
                                   <i class="nav-icon {{ $item->icon }}"></i>
                                   <p>
                                       {{ $item->name }}
@@ -51,8 +52,8 @@
                                   @endphp
                                   @foreach ($submenus as $val)
                                       <li class="nav-item">
-                                          <a href="{{ url($item->route . $val->route) }}"
-                                              class="nav-link {{ $val->position == 0 ? 'active' : '' }}">
+                                          <a href="{{ url($item->route . '/' . $val->route) }}"
+                                              class="nav-link {{ request()->path() == $item->route . '/' . $val->route ? 'active' : '' }}">
                                               <i class="{{ $val->icon }} nav-icon"></i>
                                               <p>{{ $val->name }}</p>
                                           </a>
@@ -63,7 +64,7 @@
                       @else
                           <li class="nav-item">
                               <a href="{{ url($item->route) }}"
-                                  class="nav-link {{ $item->position == 0 ? 'active' : '' }}">
+                                  class="nav-link {{ request()->is($item->route) ? 'active' : '' }}">
                                   <i class="nav-icon {{ $item->icon }}"></i>
                                   <p> {{ $item->name }}</p>
                               </a>
