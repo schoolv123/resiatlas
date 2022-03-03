@@ -1,6 +1,6 @@
 @extends('templates.index')
 @section('title')
-    {{ 'ResiAtlas | Dashboard' }}
+    {{ 'ResiAtlas | FAQ' }}
 @endsection
 @section('content')
     <div class="container-fluid">

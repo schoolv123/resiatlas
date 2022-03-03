@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateBlocksTable extends Migration
+class CreateMenusTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,14 @@ class CreateBlocksTable extends Migration
      */
     public function up()
     {
-        Schema::create('blocks', function (Blueprint $table) {
+        Schema::create('menus', function (Blueprint $table) {
             $table->id();
             $table->string('name', 255);
-            $table->string('type', 255)->nullable();
-            $table->text('title')->nullable();
-            $table->longText('content')->nullable();
-            $table->timestamps();
+            $table->string('route', 255);
+            $table->string('icon', 255);
+            $table->string('position', 5)->default(0);
+            $table->string('parent_name', 255)->nullable();
+            $table->string('parent_id', 5)->nullable();
         });
     }
 
@@ -30,6 +31,6 @@ class CreateBlocksTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('blocks');
+        Schema::dropIfExists('menus');
     }
 }

@@ -1,9 +1,13 @@
-@extends('templates.index')
+@extends('withoutSidebar')
+
 @section('title')
-    {{ 'ResiAtlas | Dashboard' }}
+    {{ 'ResiAtlas | Admin' }}
 @endsection
+
 @section('content')
     <div class="container-fluid">
-        <div class="row"></div>
+        <div class="row">
+
+        </div>
     </div>
 @endsection

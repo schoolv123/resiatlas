@@ -1,6 +1,4 @@
 @include('layouts/head')
-@include('layouts/header')
-@include('layouts/sidebar')
 
 {{-- Conntent section --}}
 <section class="content">

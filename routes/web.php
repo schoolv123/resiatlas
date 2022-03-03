@@ -14,4 +14,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [RouteController::class, 'index']);
+Route::get('/login', [RouteController::class, 'index']);
+Route::get('/', [RouteController::class, 'Dashboard']);
+Route::get('/dashboard', [RouteController::class, 'Dashboard']);
+
+//static page part
+Route::prefix('staticpage')->group(function () {
+    Route::get('/{pagename}', [RouteController::class, 'Staticpage']);
+});
+
+//faq part
+
+Route::get('/faq', [RouteController::class, 'FAQpage']);
