@@ -7,6 +7,10 @@ use Illuminate\Support\Facades\DB;
 
 class ActionController extends Controller
 {
+    function __construct()
+    {
+        $this->now = date('Y-m-d H:i:s');
+    }
     protected function StaticPageData(Request $req, string $pagename)
     {
         if ($pagename == 'home') {
@@ -31,7 +35,7 @@ class ActionController extends Controller
                 $fieldName = (string) $key;
                 if ($fieldName == 'banner_image')
                     continue;
-                $content = addslashes($val);
+                $content = $val;
                 DB::table('blocks')->where(['pagename' => $pagename, 'name' => $fieldName])->update(['content' => $content]);
             }
         } elseif ($pagename == 'about') {
@@ -64,7 +68,7 @@ class ActionController extends Controller
                 $fieldName = (string) $key;
                 if ($fieldName == 'section1_image' || $fieldName == 'section2_image')
                     continue;
-                $content = addslashes($val);
+                $content = $val;
                 DB::table('blocks')->where(['pagename' => $pagename, 'name' => $fieldName])->update(['content' => $content]);
             }
         }
@@ -91,24 +95,37 @@ class ActionController extends Controller
         if ($req->action == 'add') {
             DB::table('blocks')->insert([
                 'name' => 'faq' . time(),
-                'title' => addslashes($req->title),
-                'content' => addslashes($req->description),
+                'title' => $req->title,
+                'content' => $req->description,
                 'pagename' => 'faq',
                 'type' => 'text',
-                'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'created_at' => $this->now,
+                'updated_at' => $this->now
             ]);
-            return back()->with('success', 'FAQ added successfully');
+            return redirect('/faq')->with('success', 'FAQ added successfully');
         } elseif ($req->action === 'update') {
             DB::table('blocks')->where(['pagename' => 'faq', 'id' => $req->faqId])
                 ->update([
-                    'title' => addslashes($req->title),
-                    'content' => addslashes($req->description),
-                    'updated_at' => date('Y-m-d H:i:s')
+                    'title' => $req->title,
+                    'content' => $req->description,
+                    'updated_at' => $this->now
                 ]);
             return back()->with('success', 'FAQ updated successfully');
         } else {
             return back()->with('warning', 'Invalid action');
         }
+    }
+
+    protected function RemoveFAQ(string $faqId)
+    {
+        $delete = DB::table('blocks')->where('id', $faqId)->delete();
+        $rescode = 400;
+        if ($delete) {
+            $rescode = 200;
+            $res = ['status' => true, 'message' => 'FAQ deleted', 'data' => ['id' => $faqId]];
+        } else {
+            $res = ['status' => false, 'message' => 'Failed to delete FAQ', 'data' => ['id' => $faqId]];
+        }
+        return response($res, $rescode, []);
     }
 }

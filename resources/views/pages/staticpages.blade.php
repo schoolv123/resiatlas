@@ -51,8 +51,10 @@
                 </div>
                 <!-- /.card-body -->
 
-                <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Save</button>
+                <div class="card-footer text-center">
+                    @if (!empty($blocks))
+                        <button type="submit" class="btn btn-success">Update</button>
+                    @endif
                 </div>
             </form>
         </div>
@@ -60,7 +62,7 @@
 @endsection
 
 @section('custom-scripts')
-    <script src="{{ asset('plugins/ckeditor-cdn/ckeditor.js') }}"></script>
+    <script src="{{ asset('plugins/ckClassic/build/ckeditor.js') }}"></script>
     <script>
         let editorBlocks = document.getElementsByTagName('textarea');
         let customToolBar = [
@@ -79,17 +81,17 @@
             'mediaEmbed',
             '|',
             'undo',
-            'redo'
+            'redo',
+            '|',
+            'code', 'codeBlock'
         ];
         if (editorBlocks) {
             console.log(editorBlocks)
             for (let i = 0; i < editorBlocks.length; i++) {
                 let element = editorBlocks[i]
-                ClassicEditor.create(element, {
-                        toolbar: customToolBar
-                    })
+                ClassicEditor.create(element)
                     .then(editor => {
-                        console.log(editor);
+                        // console.log(editor);
                     })
                     .catch(error => {
                         console.error(error);

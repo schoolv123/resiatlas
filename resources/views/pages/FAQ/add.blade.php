@@ -61,19 +61,19 @@
             'blockQuote',
             'insertTable',
             'mediaEmbed',
-            '|',
-            'undo',
-            'redo'
+            '|', 'undo', 'redo',
+            'sourceEditing'
         ];
         if (editorBlocks) {
             console.log(editorBlocks)
             for (let i = 0; i < editorBlocks.length; i++) {
                 let element = editorBlocks[i]
                 ClassicEditor.create(element, {
+                        extraPlugins: ['sourceEditing'],
                         toolbar: customToolBar
                     })
                     .then(editor => {
-                        console.log(editor);
+                        // console.log(editor);
                     })
                     .catch(error => {
                         console.error(error);

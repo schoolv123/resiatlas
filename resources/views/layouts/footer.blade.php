@@ -17,6 +17,8 @@
  <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"> </script>
  {{-- AdminLTE App --}}
  <script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
+ {{-- App script --}}
+ <script src="{{ asset('assets/js/index.js') }}"></script>
 
  {{-- Custom script section --}}
  @yield('custom-scripts')

@@ -40,8 +40,8 @@
                                                 <a href="{{ url('faq/' . $item->name) }}" class="btn btn-success mx-2">
                                                     <i class="fas fa-pen"></i>
                                                 </a>
-                                                <button class="btn btn-danger mx-2 delete-faq"
-                                                    data-id="{{ $item->id }}">
+                                                <button class="btn btn-danger mx-2 delete-faq" data-id="{{ $item->id }}"
+                                                    data-action-url="{{ url('/faq/delete/' . $item->id) }}">
                                                     <i class="fas fa-trash"></i>
                                                 </button>
                                             </div>
