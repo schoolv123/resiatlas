@@ -14,16 +14,47 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            @foreach ($faqData as $item)
-                <div class="row card mx-5 bg-secondary">
+            <div class="col-12">
+                <div class="card">
                     <div class="card-header">
-                        {{ $item->title }}
+                        <a role="button" href="{{ url('faq/add') }}" class="btn btn-primary"> <i class="fas fa-plus"></i>
+                            New </a>
                     </div>
-                    <div class="card-body">
-                        {{ $item->content }}
+                    <!-- /.card-header -->
+                    <div class="card-body table-responsive p-0">
+                        <table class="table table-bordered table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>SL</th>
+                                    <th>Title</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($faqData as $key => $item)
+                                    <tr>
+                                        <td>{{ $key + 1 }}</td>
+                                        <td><strong> {{ $item->title }} </strong></td>
+                                        <td class="text-center">
+                                            <div class="d-flex">
+                                                <a href="{{ url('faq/' . $item->name) }}" class="btn btn-success mx-2">
+                                                    <i class="fas fa-pen"></i>
+                                                </a>
+                                                <button class="btn btn-danger mx-2 delete-faq"
+                                                    data-id="{{ $item->id }}">
+                                                    <i class="fas fa-trash"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                     </div>
+                    <!-- /.card-body -->
                 </div>
-            @endforeach
+                <!-- /.card -->
+            </div>
         </div>
     </div>
 @endsection

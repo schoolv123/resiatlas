@@ -14,9 +14,12 @@
  {{-- Bootstrap 4 --}}
  <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
  {{-- overlay scroll bar --}}
- <link rel="stylesheet" href="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}">
+ <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"> </script>
  {{-- AdminLTE App --}}
  <script src="{{ asset('assets/js/adminlte.min.js') }}"></script>
+
+ {{-- Custom script section --}}
+ @yield('custom-scripts')
  </body>
 
  </html>

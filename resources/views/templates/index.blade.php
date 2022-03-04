@@ -17,12 +17,8 @@
 
     {{-- Main content --}}
     <section class="content">
-        @section('layout/flash')
-            @yield('content')
-        </section>
-        {{-- /.content --}}
-    </div>
-    {{-- Custom script section --}}
-    @yield('custom-scripts')
-
-    @include('layouts/footer')
+        @include('layouts/flash')
+        @yield('content')
+    </section>
+</div>
+@include('layouts/footer')

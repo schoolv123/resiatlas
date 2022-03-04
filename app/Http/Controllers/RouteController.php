@@ -25,4 +25,13 @@ class RouteController extends Controller
         $blocks = DB::table('blocks')->where('pagename', 'faq')->get() ?? [];
         return view('pages.FAQ.index', ['faqData' => $blocks]);
     }
+    protected function AddFAQ()
+    {
+        return view('pages.FAQ.add');
+    }
+    protected function EditFAQ(string $faqname)
+    {
+        $blocks = DB::table('blocks')->where(['pagename' => 'faq', 'name' => $faqname])->first() ?? [];
+        return view('pages.FAQ.add', ['faqData' => $blocks]);
+    }
 }

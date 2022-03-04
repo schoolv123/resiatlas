@@ -26,5 +26,10 @@ Route::prefix('staticpage')->group(function () {
 });
 
 //faq part
-
-Route::get('/faq', [RouteController::class, 'FAQpage']);
+Route::prefix('faq')->group(function () {
+    Route::get('/', [RouteController::class, 'FAQpage']);
+    Route::get('/add', [RouteController::class, 'AddFAQ']);
+    Route::post('/add', [ActionController::class, 'FAQAction']);
+    Route::get('/{faqname}', [RouteController::class, 'EditFAQ']);
+    Route::post('/{faqname}', [ActionController::class, 'FAQAction']);
+});
