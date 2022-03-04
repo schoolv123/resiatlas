@@ -49,7 +49,7 @@ class ActionController extends Controller
                 $prevData = DB::table('blocks')->where(['pagename' => $pagename, 'name' => 'section1_image', 'type' => 'image'])->first('content');
                 $imagedeleteStatus = !empty($prevData->content) ? $this->removeImage($prevData->content) : false;
                 $fileName = 'section1_image' . time() . '.' . $formData['section1_image']->extension();
-                $formData['banner_image']->move(public_path($uploadPath), $fileName);
+                $formData['section1_image']->move(public_path($uploadPath), $fileName);
                 DB::table('blocks')->where(['pagename' => $pagename, 'name' => 'section1_image'])->update(['content' => $uploadPath . '/' . $fileName]);
             }
             if (!empty($formData['section2_image'])) {
