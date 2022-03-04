@@ -3,7 +3,7 @@
 @include('layouts/sidebar')
 
 {{-- Conntent section --}}
-<div class="content-wrapper" style="min-height: 1345.6px;">
+<div class="content-wrapper" style="min-height: 182px;">
     {{-- Content Header (Page header) --}}
     <section class="content-header">
         <div class="container-fluid">
@@ -17,11 +17,12 @@
 
     {{-- Main content --}}
     <section class="content">
-        @yield('content')
-    </section>
-    {{-- /.content --}}
-</div>
-{{-- Custom script section --}}
-@yield('custom-scripts')
+        @section('layout/flash')
+            @yield('content')
+        </section>
+        {{-- /.content --}}
+    </div>
+    {{-- Custom script section --}}
+    @yield('custom-scripts')
 
-@include('layouts/footer')
+    @include('layouts/footer')

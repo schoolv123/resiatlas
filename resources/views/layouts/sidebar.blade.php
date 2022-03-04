@@ -4,7 +4,7 @@
       <a href="{{ url('/') }}" class="brand-link">
           <img src="{{ asset('assets/img/AdminLTELogo.png') }}" alt="Logo" class="brand-image elevation-3"
               style="opacity: .8">
-          <span class="brand-text font-weight-light">ResiAtlas</span>
+          <span class="brand-text font-weight-light">Resi Atlas</span>
       </a>
 
       {{-- Sidebar --}}

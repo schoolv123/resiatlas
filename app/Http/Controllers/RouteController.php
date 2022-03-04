@@ -22,6 +22,7 @@ class RouteController extends Controller
     }
     protected function FAQpage()
     {
-        return view('pages.FAQ.index');
+        $blocks = DB::table('blocks')->where('pagename', 'faq')->get() ?? [];
+        return view('pages.FAQ.index', ['faqData' => $blocks]);
     }
 }

@@ -21,7 +21,8 @@ class ActionController extends Controller
 
         foreach ($req->all() as $key => $val) {
             $fieldName = (string) $key;
-            DB::table('blocks')->where(['pagename' => $pagename, 'name' => $fieldName])->update(['content' => $val]);
+            $content = addslashes($val);
+            DB::table('blocks')->where(['pagename' => $pagename, 'name' => $fieldName])->update(['content' => $content]);
         }
         return back()->with('success', 'Blocks updated');
     }
