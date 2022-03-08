@@ -30,3 +30,7 @@ a{
     background-color: rgba(255,255,255,.1);
     color: #fff;
   }
+
+  .rounded{
+    border-radius: 50%;
+  }

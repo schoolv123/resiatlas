@@ -3,7 +3,7 @@
 @include('layouts/sidebar')
 
 {{-- Conntent section --}}
-<div class="content-wrapper" style="min-height: 182px;">
+<div class="content-wrapper" style="min-height: 550px;">
     {{-- Content Header (Page header) --}}
     <section class="content-header">
         <div class="container-fluid">

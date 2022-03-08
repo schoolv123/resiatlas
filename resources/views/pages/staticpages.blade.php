@@ -27,20 +27,27 @@
                         @elseif($item->type == 'image')
                             <div class="form-group">
                                 <label for="#{{ $item->name }}">{{ $item->title }}</label>
-                                <input type="file" class="form-control" id="{{ $item->name }}"
-                                    name="{{ $item->name }}" value="">
                                 @if (!empty($item->content))
                                     @php
                                         $imagePath = explode('/', $item->content);
                                         $image = end($imagePath) ?? '';
                                     @endphp
                                     <br />
-                                    <span>Current Image:</span><a class="text-primary mx-2" target="_blank"
-                                        href="{{ url($item->content) }}">
+                                    <span>Current Image:</span>
+                                    <a class="text-primary mx-2" target="_blank" href="{{ url($item->content) }}">
                                         <img src="{{ url($item->content) }}" class="img-thumbnail"
                                             style="max-width: 200px; max-height:200px; width:100%; height:auto;" />
                                     </a>
                                 @endif
+                                <button type="button" class="btn btn-primary rounded mx-1"> <i
+                                        class="fas fa-plus"></i></button>
+                                <button type="button" class="btn btn-danger rounded mx-1 delete-image"
+                                    data-id="{{ $item->id }}"
+                                    data-action-url="{{ url('staticpage/' . $item->pagename . '/remove-image/' . $item->id) }}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                                <input type="file" class="form-control d-none" id="{{ $item->name }}"
+                                    name="{{ $item->name }}" value="">
                             </div>
                         @elseif($item->type == 'para')
                             <label for="#{{ $item->name }}">{{ $item->title }}</label>
@@ -52,7 +59,7 @@
                 <!-- /.card-body -->
 
                 <div class="card-footer text-center">
-                    @if (!empty($blocks))
+                    @if (isset($blocks) && sizeof($blocks) > 0)
                         <button type="submit" class="btn btn-success">Update</button>
                     @endif
                 </div>
@@ -83,13 +90,15 @@
             'undo',
             'redo',
             '|',
-            'code', 'codeBlock'
+            'sourceEditing'
         ];
         if (editorBlocks) {
             console.log(editorBlocks)
             for (let i = 0; i < editorBlocks.length; i++) {
                 let element = editorBlocks[i]
-                ClassicEditor.create(element)
+                ClassicEditor.create(element, {
+                        toolbar: customToolBar
+                    })
                     .then(editor => {
                         // console.log(editor);
                     })

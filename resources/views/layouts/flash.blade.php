@@ -17,7 +17,7 @@
                  {{-- <form action="{{url('/channel-integration')}}"> 
                         <input class="btn btn-default btnadd" type="submit" name="" id="" value="Yes"> 
                     </form> --}}
-                 <button class="btn btn-danger btnadd" type="button" id="jsconfirm"> Yes </button>
+                 <a class="btn btn-danger btnadd" href="#" type="button" id="jsconfirm"> Yes </a>
                  <button class="btn btn-primary btnadd" data-dismiss="modal">No</button>
              </div>
          </div>

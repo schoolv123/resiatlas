@@ -72,7 +72,7 @@ class ActionController extends Controller
                 DB::table('blocks')->where(['pagename' => $pagename, 'name' => $fieldName])->update(['content' => $content]);
             }
         }
-        return back()->with('success', 'Blocks updated');
+        return back()->with('success', 'Page updated');
     }
 
     private function removeImage(string $path)
@@ -127,5 +127,14 @@ class ActionController extends Controller
             $res = ['status' => false, 'message' => 'Failed to delete FAQ', 'data' => ['id' => $faqId]];
         }
         return response($res, $rescode, []);
+    }
+    protected function DeleteFAQ(string $faqId)
+    {
+        $delete = DB::table('blocks')->where('id', $faqId)->delete();
+        if ($delete) {
+            return back()->with('success', 'FAQ Deleted');
+        } else {
+            return back()->with('success', 'Failed to Deleted FAQ');
+        }
     }
 }

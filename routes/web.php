@@ -30,6 +30,7 @@ Route::prefix('faq')->group(function () {
     Route::get('/', [RouteController::class, 'FAQpage']);
     Route::get('/add', [RouteController::class, 'AddFAQ']);
     Route::post('/add', [ActionController::class, 'FAQAction']);
+    Route::get('/delete/{faqId}', [ActionController::class, 'DeleteFAQ']);
     Route::delete('/delete/{faqId}', [ActionController::class, 'RemoveFAQ']);
     Route::get('/{faqname}', [RouteController::class, 'EditFAQ']);
     Route::post('/{faqname}', [ActionController::class, 'FAQAction']);

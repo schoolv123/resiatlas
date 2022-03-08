@@ -1,38 +1,13 @@
 $(document).ready(function () {
     //delete smpt
-    $('.delete-faq').click(function () {
+    $('.delete-faq,.delete-image').click(function () {
         let url = $(this).attr('data-action-url')
         let token = $('meta[name="csrf-token"]').attr('content')
         let modal = new bootstrap.Modal(document.getElementById('jsConfirmModel'))
         modal.show()
-        console.log(url)
+        $('#jsconfirm').attr('href', url);
         $('#jsconfirm').click(function () {
             modal.hide()
-            $.ajax({
-                type: "DELETE",
-                url: url,
-                data: {
-                    _token: token
-                },
-                success: (data) => {
-                    if (data.status) {
-                        giveAlert('success', data.message)
-                    } else {
-                        giveAlert('danger', data.message)
-                    }
-                    console.log(data)
-                    setInterval(() => {
-                        location.reload()
-                    }, 3000)
-                },
-                error: function (XMLHttpRequest, textStatus, errorThrown) {
-                    giveAlert('danger', "Status: " + textStatus + " Error: " + errorThrown)
-                    console.log("Status: " + textStatus + " Error: " + errorThrown)
-                    setInterval(() => {
-                        location.reload()
-                    }, 3000)
-                }
-            })
         })
     })
 })
